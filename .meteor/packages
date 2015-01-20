@@ -7,3 +7,4 @@
 meteor-platform
 fezvrasta:bootstrap-material-design
 manuelschoebel:wait-on-lib
+iron:router
