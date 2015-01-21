@@ -8,3 +8,5 @@ meteor-platform
 fezvrasta:bootstrap-material-design
 manuelschoebel:wait-on-lib
 iron:router
+npvn:accounts-ui-bootstrap-3
+accounts-password
