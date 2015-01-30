@@ -1,0 +1,35 @@
+<template name="team">
+  <section id="team" class="bg-light-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading">Our Amazing Team</h2>
+        </div>
+      </div>
+      <div class="row">
+        {{> members}}
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+          <p class="large text-muted">Enjoy Coding</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<template name="members">
+  {{#each members}}
+    {{> member}}
+  {{/each}}
+</template>
+
+<template name="member">
+  <div class="col-sm-4">
+    <div class="team-member">
+      <img src="{{url}}" class="img-responsive img-circle" alt="">
+      <h4>{{name}}</h4>
+      <p class="text-muted">{{job}}</p>
+    </div>
+  </div>
+</template>
