@@ -1,54 +1,62 @@
 <template name="project">
-  <div class="col-md-4 col-sm-6 discover-item">
-    <a href="#discoverModal1" class="discover-link" data-toggle="modal">
-      <div class="discover-hover">
-        <div class="discover-hover-content">
-          <i class="fa fa-plus fa-3x"></i>
+  <div class="container top-60">
+    <div class="well">
+      <div class="row">
+        <div class="col-md-8 col-lg-offset-2">
+          <div class="modal-body">
+            <!-- Project Details Go Here -->
+            <h2>{{title}}</h2>
+            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+            <img class="img-responsive" src="/img/portfolio/roundicons-free.png" alt="">
+            <pre>
+              {{description}}
+            </pre>
+            <ul class="list-inline">
+              <li>Date: July 2014</li>
+              <li>Client: Round Icons</li>
+              <li>Category: Graphic Design</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
-    </a>
-    <div class="discover-caption">
-      <h4>Round Icons</h4>
-      <p class="text-muted">Graphic Design</p>
+    </div>
+
+    <div class="well">
+      {{#if currentUser}}
+        {{> commentSubmit}}
+      {{else}}
+        <p>Please log in to leave a comment.</p>
+      {{/if}}
+  
+      <ul class="comments">
+        {{#each comments}}
+          {{> commentItem}}
+        {{/each}}
+      </ul>
     </div>
   </div>
-
-  <!-- Project Modals -->
-  {{> project_modal}}
-
 </template>
 
-<template name="project_modal">
-  <div class="discover-modal modal fade" id="discoverModal1" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-        <div class="lr">
-          <div class="rl">
-          </div>
-        </div>
+
+<template name="commentItem">
+  <li>
+  <h4>
+    <span class="author">{{author}}</span>
+    <span class="date">on {{submittedText}}</span>
+  </h4>
+    <p>{{body}}</p>
+  </li>
+</template>
+
+<template name="commentSubmit">
+  <form name="comment">
+    <div class="row">
+      <div class="col-md-8">
+        <input type="text" class="form-control" id="commentbody" />
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-            <div class="modal-body">
-              <!-- Project Details Go Here -->
-              <h2>Project Name</h2>
-              <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-              <img class="img-responsive" src="img/portfolio/roundicons-free.png" alt="">
-              <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-              <p>
-                <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
-              <ul class="list-inline">
-                <li>Date: July 2014</li>
-                <li>Client: Round Icons</li>
-                <li>Category: Graphic Design</li>
-              </ul>
-              <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-            </div>
-          </div>
-        </div>
+      <div class="col-md-2">
+       <button type="submit" class="btn btn-primary">Add Comment</button>
       </div>
     </div>
-  </div>
+  </form>
 </template>

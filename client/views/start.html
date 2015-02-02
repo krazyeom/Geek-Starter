@@ -1,4 +1,5 @@
 <template name="start">
+{{#if currentUser}}
 <div class="container" style="margin-top: 100px;">
   <div class="py6">
     <div id="running-board-wrap">
@@ -24,18 +25,37 @@
         <div class="form-group">
           <label for="textArea" class="col-lg-2 control-label">Describe idea</label>
           <div class="col-lg-10">
-            <textarea class="form-control" rows="10" id="textArea"></textarea>
+            <textarea class="form-control" rows="10" id="desc"></textarea>
             <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
           </div>
         </div>
+<!-- 
+        <div class="form-group">
+          <label for="textArea" class="col-lg-2 control-label">Describe idea</label>
+          <div class="col-lg-10">
+            {{> upload_bootstrap contentType='images' fileTypes='.png,.jpg' formData="aaaaa"}}
+          </div>
+        </div>
+ -->
+        <div class="form-group">
+          <label for="title" class="col-lg-2 control-label">Funding Goal</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" id="fundingGoal" placeholder="$0">
+          </div>
+        </div>
+
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
-            <button class="btn btn-default btn-warning">Cancel</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
           </div>
         </div>
       </fieldset>
     </form>
   </div>
 </div>
+{{else}}
+<div class="container" style="margin-top: 100px;">
+  Please Log-in.
+</div>
+{{/if}}
 </template>

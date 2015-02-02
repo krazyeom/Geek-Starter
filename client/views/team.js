@@ -21,3 +21,12 @@ Template.members.helpers({
   }
   ]
 });
+
+Template.contributers.helpers({
+  contributers: [
+  {
+    url: "img/team/2.jpg",
+    name: "Keen",
+    job: "King"
+  }]
+});

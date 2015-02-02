@@ -1,0 +1,18 @@
+<template name="projects">
+  {{#each projects}}
+    <div class="col-md-4 col-sm-6 discover-item">
+      <a href="{{pathFor 'project'}}" class="discover-link" data-toggle="modal">
+        <div class="discover-hover">
+          <div class="discover-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
+      </a>
+      <div class="discover-caption">
+        <h4>{{title}}</h4>
+        <p class="text-muted">Graphic Design</p>
+      </div>
+    </div>
+  {{/each}}
+</template>

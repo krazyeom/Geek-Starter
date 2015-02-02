@@ -24,15 +24,27 @@
           <li>
             <a class="page-scroll" href="{{pathFor 'start'}}">Start</a>
           </li>
-          <li>
-            <form accept-charset="UTF-8" action="/projects/search" class="js-header-livesearch nav-livesearch" method="get"><div style="margin:0;padding:0;display:inline"><input class="hidden" name="utf8" type="hidden" value="✓"></div>
-              <span aria-hidden="true" class="icon-search"></span>
-              <input class="nav-livesearch-input js-search-term text valid" data-tracker-name="Header Live Search" id="term" name="term" placeholder="Search Projects" type="text" autocomplete="off">
-            </form>
-          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          {{> loginButtons}}                
+          {{#if currentUser}}
+            <li>
+              <a class="page-scroll" href="#">Amount: $ {{userFundAmount}}</a>
+            </li>
+
+            <li>
+              <a class="page-scroll" href="{{pathFor 'user'}}">{{userName}}</a>
+            </li>
+            <li>
+              <a id="logout" class="page-scroll" href="{{pathFor 'logout'}}">Log-out</a>
+            </li>
+          {{else}}
+            <li>
+              <a class="page-scroll" href="{{pathFor 'login'}}">Log-In</a> 
+            </li>
+            <li>
+              <a class="page-scroll" href="{{pathFor 'signup'}}">Sign-up</a> 
+            </li>
+          {{/if}}
         </ul>
       </div>
       <!-- /.navbar-collapse -->
