@@ -1,21 +1,33 @@
 <template name="project">
-  <div class="container top-60">
+  <div class="container top-100">
     <div class="well">
       <div class="row">
         <div class="col-md-8 col-lg-offset-2">
-          <div class="modal-body">
-            <!-- Project Details Go Here -->
-            <h2>{{title}}</h2>
-            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-            <img class="img-responsive" src="/img/portfolio/roundicons-free.png" alt="">
-            <pre>
-              {{description}}
-            </pre>
-            <ul class="list-inline">
-              <li>Date: July 2014</li>
-              <li>Client: Round Icons</li>
-              <li>Category: Graphic Design</li>
-            </ul>
+          <!-- Project Details Go Here -->
+          <h2>{{title}}</h2>
+          <p class="item-intro text-muted">by {{userName}}</p>
+          <ul class="list-inline">
+            <li>{{submitted}}</li>
+          </ul>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <img class="img-responsive" src="/img/header-bg.jpg" alt="">
+                </div>
+                <div class="col-md-12">
+                  <h3>Description</h3>
+                    {{#markdown}} 
+{{description}}
+                    {{/markdown}}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              {{> fund}}
+            </div>
+
           </div>
         </div>
       </div>
@@ -50,13 +62,56 @@
 
 <template name="commentSubmit">
   <form name="comment">
-    <div class="row">
-      <div class="col-md-8">
-        <input type="text" class="form-control" id="commentbody" />
-      </div>
-      <div class="col-md-2">
-       <button type="submit" class="btn btn-primary">Add Comment</button>
+    <div class="form-group">
+      <div class="input-group">
+          <input type="text" class="form-control" id="commentbody" maxlength="50" />
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">Add Comment</button>
+          </span>
       </div>
     </div>
   </form>
+</template>
+
+<template name="fund">
+  <div class="row">
+  
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>{{fundRiserCount}}</h2>
+        </div>
+        <div class="col-md-12"> backers </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12" style="text-align: left;">
+          {{percent}}% funded
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+          <div class="progress progress-striped">
+            <div class="progress-bar progress-bar-info" style="width: {{percent}}%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>₩ {{comma fundAmount}}</h2>
+        </div>
+        <div class="col-md-12">
+          pledged of ₩ {{comma fundGoal}} goal
+        </div>
+      </div>
+    </div>
+    {{#if currentUser}}
+      <div class="col-md-12">
+        <a href="{{pathFor 'projectfund'}}" class="btn btn-primary">Fund this project</a>
+      </div>
+    {{/if}}
+  </div>
 </template>

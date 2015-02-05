@@ -1,18 +1,42 @@
 <template name="projects">
-  {{#each projects}}
+  {{#each this}}
     <div class="col-md-4 col-sm-6 discover-item">
-      <a href="{{pathFor 'project'}}" class="discover-link" data-toggle="modal">
+      <a href="{{pathFor 'project'}}" class="discover-link">
         <div class="discover-hover">
           <div class="discover-hover-content">
             <i class="fa fa-plus fa-3x"></i>
           </div>
         </div>
-        <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
+        <img src="/img/header-bg.jpg" class="img-responsive" alt="">
       </a>
       <div class="discover-caption">
         <h4>{{title}}</h4>
-        <p class="text-muted">Graphic Design</p>
+        <p class="item-intro text-muted">by {{userName}}</p>
+        {{> fundDetail}}
       </div>
     </div>
   {{/each}}
+</template>
+
+
+<template name="fundDetail">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="progress progress-striped">
+        <div class="progress-bar progress-bar-info" style="width: {{percent}}%">
+        </div>
+      </div>
+    </div>    
+  </div>
+  <div class="row">
+      <div class="col-md-4" style="text-align: left;">
+        {{percent}}%<br>funded
+      </div>
+    <div class="col-md-3" style="text-align: left;">
+      {{fundRiserCount}}<br>backers
+    </div>
+    <div class="col-md-5" style="text-align: left;">
+      ₩ {{comma fundAmount}}<br>pledged
+    </div>
+  </div>
 </template>

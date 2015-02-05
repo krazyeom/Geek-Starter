@@ -1,11 +1,14 @@
 Template.project.helpers({
   comments: function() {
     return Comments.find({projectId: this._id}, {sort: {submitted: -1}});
+  },
+  username: function() {
+    return Meteor.user().profile.userName;
   }
 });
 
 Template.project.rendered = function () {
-
+  $.material.init();
 };
 
 Template.commentItem.helpers({
@@ -14,53 +17,46 @@ Template.commentItem.helpers({
   }
 });
 
+addComment = function(e, template) {
+  var $body = $(e.target).find("#commentbody");
+  
+  if ($body.val().trim().length === 0) {
+    alert("Please enter comment");
+    return;
+  };
+
+  var comment = {
+    body: $body.val(),
+    projectId: template.data._id
+  };
+
+  Meteor.call('addComment', comment, function (error, result) {
+    if (error) {
+      console.log(error);
+    } else {
+      $body.val('');
+    }
+  });  
+}
+
 Template.commentSubmit.events({
   'submit form': function (e, template) {
     e.preventDefault();
-    var $body = $(e.target).find("#commentbody");
-    
-    if ($body.val().trim().length === 0) {
-      alert("Please enter comment");
-      return;
-    };
-
-    var comment = {
-      body: $body.val(),
-      projectId: template.data._id
-    };
-
-    Meteor.call('addComment', comment, function (error, result) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(result);
-        $body.val('');
-      }
-    });
+    addComment(e, template);
   },
   'keydown #commentBody': function(e, template) {
     if (e.keyCode === 13) {
-      var $body = $(e.target).find("#commentbody");
-      
-      if ($body.val().trim().length === 0) {
-        alert("Please enter comment");
-        return;
-      };
-
-      var comment = {
-        body: $body.val(),
-        projectId: template.data._id
-      };
-
-      Meteor.call('addComment', comment, function (error, result) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(result);
-          $body.val('');
-        }
-      });
-
+      addComment(e, template);
     }
   }
 });
+
+Template.fund.helpers({
+  percent: function () {
+    return Math.round(this.fundAmount / this.fundGoal * 100);
+  }
+});
+
+Template.fund.rendered = function () {
+  $.material.init();
+};

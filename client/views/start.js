@@ -1,27 +1,41 @@
-Template.start.helpers({
-
-});
-
-
-Template.start.events({
-  'click button[type="submit"]': function(e, tmp){
+Template.startForm.events({
+  'submit form': function(e, tmp){
     e.preventDefault();
-    var title = $('#title').val();
-    var desc = $('#desc').val();
-    Meteor.call('add', title, desc, function(err, result){
+    var title = $(e.target).find('#title').val().trim();
+    var desc = $(e.target).find('#desc').val().trim();
+    var fundGoal = $(e.target).find('#fundGoal').val().trim();
+
+    if (title == undefined || title === '' || title.length === 0){
+      alert("Incorrect title. Please input the description title.");
+      return;
+    }
+
+    if (desc == undefined || desc === '' || desc.length === 0){
+      alert("Incorrect description. Please input the description correctly.");
+      return;
+    }
+
+    if (fundGoal == undefined || fundGoal === '' || fundGoal <= 0){
+      alert("Incorrect fund goal. Please enter the fund goal correctly.");
+      return;
+    }
+
+    var project = {
+      title: title,
+      description: desc,
+      fundGoal: fundGoal
+    }
+    Meteor.call('addProject', project, function(err, result){
       if (err) {
         // console.log(err);
         return console.log(err);
       } 
-
-      console.log(result);
 
       Router.go('discover');
     });
   }
 });
 
-Template.start.rendered = function () {
+Template.startForm.rendered = function () {
   $.material.init();
 };
-

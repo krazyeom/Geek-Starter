@@ -1,11 +1,6 @@
-Meteor.publish('projects', function(_id) {
-  console.log("_id: " + _id);
-  if (_id) {
-    return Projects.find({_id: _id});
-  } else {
-    return Projects.find({});  
-  }
-  
+Meteor.publish('projects', function() {
+  //FIXME: 추후 프로젝트가 많아지면 limit를 줘야할 듯
+  return Projects.find({});  
 });
 
 Meteor.publish('users-by-selector', function() {

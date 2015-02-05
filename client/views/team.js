@@ -1,9 +1,4 @@
-Template.team.helpers({
-  
-});
-
-Template.members.helpers({
-  members: [
+var members = [
   {
     url: "img/team/3.jpg",
     name: "Jump",
@@ -11,7 +6,7 @@ Template.members.helpers({
   }, 
   {
     url: "img/team/2.png",
-    name: "Steve",
+    name: "Steve Yeom",
     job: "Lead Developer"
   }, 
   {
@@ -19,14 +14,23 @@ Template.members.helpers({
     name: "Tiffany",
     job: "Fashion Developer"
   }
-  ]
-});
+  ];
 
-Template.contributers.helpers({
-  contributers: [
+var contributers = [
   {
     url: "img/team/2.jpg",
     name: "Keen",
     job: "King"
-  }]
+  }];
+
+Template.members.helpers({
+  members: function() {
+    return members;
+  }
+});
+
+Template.contributers.helpers({
+  contributers: function() {
+    return contributers;
+  }
 });
