@@ -51,6 +51,22 @@ Template.commentSubmit.events({
   }
 });
 
+Template.join.events({
+  'click #developerJoin': function(e, template) {
+    e.preventDefault();
+    template.$('#developerJoin').addClass('disabled');
+    template.$('#designerJoin').addClass('disabled');
+
+    // $(e.target).addClass('disabled');
+  },
+  'click #designerJoin': function(e, template) {
+    e.preventDefault();
+    template.find('#designerJoin').addClass('disabled');
+    // $(e.target).addClass('disabled');
+  }
+});
+
+
 Template.fund.helpers({
   percent: function () {
     return Math.round(this.fundAmount / this.fundGoal * 100);

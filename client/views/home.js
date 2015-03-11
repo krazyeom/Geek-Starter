@@ -11,15 +11,18 @@ Template.home.rendered = function () {
     .describe("Luke", .6, "#luke");
 
   theater
-    .write("Vader:Hello. there", 600)
-    .write("Luke:Hi", 400)
-    .write("Vader:Hmm...", 400)
-    .write("Vader:Do you have any Idea!?", 400)
-    .write("Luke:Yes", 400)
-    .write("Luke:I will show you my Idea!", 400)
-    .write("Vader:Bring your creative project to SDS", 600)
+    .write("Vader:Hello.", 300)
+    .write("Vader:Good evening :]", 300)
+    .write("Luke:Hi...", 300)
+    .write("Luke:but it's friday", 300)
+    .write("Vader:Hmm...", 300)
+    .write("Vader:Do you have a grate Idea!?", 300)
+    .write("Luke:Yes", 300)
+    .write("Luke:I will show you my Idea!", 300)
+    .write("Vader:Do you like a pizza & beer?!", 300)
+    .write("Luke:Sure!", 300)
+    .write("Vader:Enjoy friday evening!", 300)
     .write(function () { theater.play(true); });
-
 
   theater
     .on("say:start, erase:start", function () {

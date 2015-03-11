@@ -6,13 +6,18 @@ var members = [
   }, 
   {
     url: "img/team/2.png",
-    name: "Steve Yeom",
+    name: "Steve",
     job: "Lead Developer"
   }, 
   {
     url: "img/team/3.png",
     name: "Tiffany",
     job: "Fashion Developer"
+  }, 
+  {
+    url: "img/team/5.png",
+    name: "Sun",
+    job: "Happening Developer"
   }
   ];
 

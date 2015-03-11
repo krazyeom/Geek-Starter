@@ -16,7 +16,7 @@ if (Projects.find().count() === 0) {
   var userId = Meteor.users.find({username: 'admin'})._id;
   Projects.insert({
     title: 'Geek Starter', 
-    description: '프로젝트 및 아이디어 펀딩을 위한 서비스', 
+    description: '### 프로젝트 및 아이디어 펀딩을 위한 서비스\n\n### Language & Platform\n\nMeteor(Node.js + Javascript + HTML + CSS)\n', 
     userId: userId,
     userName: userName,
     submitted: new Date(),
