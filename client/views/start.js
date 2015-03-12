@@ -3,12 +3,12 @@ Template.startForm.events({
     e.preventDefault();
     var title = $(e.target).find('#title').val().trim();
     var desc = $(e.target).find('#desc').val().trim();
-    var fundGoal = $(e.target).find('#fundGoal').val().trim();
-    var developerNumber = $(e.target).find('#developerNumber').val();
-    var designerNumber = $(e.target).find('#designerNumber').val();
+    // var fundGoal = $(e.target).find('#fundGoal').val().trim();
+    // var developerNumber = $(e.target).find('#developerNumber').val();
+    // var designerNumber = $(e.target).find('#designerNumber').val();
 
-    console.log(developerNumber);
-    console.log(designerNumber);
+    // console.log(developerNumber);
+    // console.log(designerNumber);
     if (title == undefined || title === '' || title.length === 0){
       alert("Incorrect title. Please input the description title.");
       return;
@@ -19,17 +19,17 @@ Template.startForm.events({
       return;
     }
 
-    if (fundGoal == undefined || fundGoal === '' || fundGoal <= 0){
-      alert("Incorrect fund goal. Please enter the fund goal correctly.");
-      return;
-    }
+    // if (fundGoal == undefined || fundGoal === '' || fundGoal <= 0){
+    //   alert("Incorrect fund goal. Please enter the fund goal correctly.");
+    //   return;
+    // }
 
     var project = {
       title: title,
       description: desc,
-      fundGoal: fundGoal,
-      developerNumber: developerNumber,
-      designerNumber: designerNumber
+      fundGoal: 0,
+      developerNumber: 0,
+      designerNumber: 0
     }
     Meteor.call('addProject', project, function(err, result){
       if (err) {
