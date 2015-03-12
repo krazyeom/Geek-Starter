@@ -1,8 +1,8 @@
 var members = [
   {
-    url: "img/team/3.jpg",
-    name: "Jump",
-    job: "Visual Developer"
+    url: "img/team/2.jpg",
+    name: "Keen",
+    job: "King Developer"
   }, 
   {
     url: "img/team/2.png",
@@ -10,14 +10,9 @@ var members = [
     job: "Lead Developer"
   }, 
   {
-    url: "img/team/3.png",
-    name: "Tiffany",
-    job: "Fashion Developer"
-  }, 
-  {
-    url: "img/team/5.png",
-    name: "Sun",
-    job: "Happening Developer"
+    url: "img/team/DSC05729.jpg",
+    name: "Alex",
+    job: "Ganji Developer"
   }
   ];
 
