@@ -32,20 +32,26 @@ Template.commentItem.helpers({
 
 Template.fileUpload.events({
   'click .fileUpload': function (event, template) {
+    var fileInput = template.find('.fileInput');
+    var control = $(fileInput);
+    var file = fileInput.files[0];
 
-  var file = template.find('.fileInput').files[0];
-  var file2 = new FS.File(file);
-  if (file && file2) {
-    file = new FS.File(file);
-    var projectId = this._id;
+    if (file) {
+      file = new FS.File(file);
+      var projectId = this._id;
 
-    Uploads.insert(file, function(err, fileObj){
-      events.insert({
-          projectId: projectId ,
-          file: fileObj
-        });
-    })
+      Uploads.insert(file, function(err, fileObj){
+        if (err == undefined){
+          events.insert({
+            projectId: projectId,
+            file: fileObj
+          });
+       }
+      });
+    } else {
+      alert('please choose file.');
     }
+    control.replaceWith( control = control.clone( true ) );
   }
 });
 
