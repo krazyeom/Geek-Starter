@@ -16,7 +16,7 @@ Template.home.rendered = function () {
     .write("Luke:Hi...", 300)
     .write("Luke:but it's friday", 300)
     .write("Vader:Hmm...", 300)
-    .write("Vader:Do you have a grate Idea!?", 300)
+    .write("Vader:Do you have a great Idea!?", 300)
     .write("Luke:Yes", 300)
     .write("Luke:I will show you my Idea!", 300)
     .write("Vader:Do you like a pizza & beer?!", 300)
