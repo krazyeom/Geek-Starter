@@ -2,7 +2,7 @@
   <div class="container top-100">
     <div class="well">
       <div class="row">
-        <div class="col-md-10 col-lg-offset-1">
+        <div class="col-md-10 col-md-offset-1">
           <!-- Project Details Go Here -->
           <h2>{{title}}</h2>
           <p class="item-intro text-muted">by {{userName}}</p>
@@ -23,8 +23,10 @@
 {{description}}
                     {{/markdown}}
                 </div>
+                <div class="col-md-12">
+                  {{> fileUpload}}
+                </div>
               </div>
-              {{> fileUpload}}
             </div>
           </div>
         </div>
@@ -160,39 +162,39 @@
 </template>
 
 <template name="fileUpload">
-<div class="panel panel-default push-down">
-{{#if currentUser}}
-  <div class="panel-body">
-    <p>
-      Add Files
-        <input  type="file" name="file" class="fileInput"/>
-        <span class="btn btn-primary fileUpload">
-          Upload
-        </span>
-    </p>
-  </div>
-{{/if}}
-{{#if uploads}}
-  <div class="panel-footer">
-      <div class="col-md-9">
-        <table class="table table-hover table-striped table-bordered">
-          <thead>
-          <th>Name</th>
-          <th>Download</th>
-          </thead>
-          <tbody>
-            {{#each uploads}}
-            <tr>
-              <td>{{name}}</td>
-              <td><a href="{{url download=true}}" type="button" class="btn btn-warning" target="_brank">
-                Download
-              </a></td>
-            </tr>
-            {{/each}}
-          </tbody>
-        </table>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default push-down">
+    {{#if currentUser}}
+      <div class="panel-body">
+        <p>
+          Add Files
+            <input  type="file" name="file" class="fileInput"/>
+            <span class="btn btn-primary fileUpload">
+              Upload
+            </span>
+        </p>
       </div>
+    {{/if}}
   </div>
+{{#if uploads}}
+  <table class="table table-hover table-striped table-bordered">
+    <thead>
+    <th>Name</th>
+    <th>Download</th>
+    </thead>
+    <tbody>
+      {{#each uploads}}
+      <tr>
+        <td>{{name}}</td>
+        <td><a href="{{url download=true}}" type="button" class="btn btn-warning" target="_brank">
+          Download
+        </a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 {{/if}}
+</div>
 </div>
 </template>

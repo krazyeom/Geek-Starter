@@ -38,7 +38,6 @@ Template.fileUpload.events({
   var projectId = this._id;
 
   Uploads.insert(file, function(err, fileObj){
-    console.log(fileObj);
     events.insert({
         projectId: projectId ,
         file: fileObj
