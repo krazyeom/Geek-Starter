@@ -14,3 +14,6 @@ tomi:upload-jquery
 accounts-base
 markdown
 sacha:spin
+cfs:standard-packages
+cfs:filesystem
+cfs:ejson-file

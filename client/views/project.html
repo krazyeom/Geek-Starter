@@ -13,15 +13,18 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-12">
-<!--                   <img class="img-responsive" src="/img/header-bg.jpg" alt="">
- -->                </div>
+<!--
+                  <img class="img-responsive" src="/img/header-bg.jpg" alt="">
+ -->
+                </div>
                 <div class="col-md-12">
                   <h3>Description</h3>
-                    {{#markdown}} 
+                    {{#markdown}}
 {{description}}
                     {{/markdown}}
                 </div>
               </div>
+              {{> fileUpload}}
             </div>
           </div>
         </div>
@@ -34,7 +37,7 @@
       {{else}}
         <p>Please log in to leave a comment.</p>
       {{/if}}
-  
+
       <ul class="comments">
         {{#each comments}}
           {{> commentItem}}
@@ -70,7 +73,7 @@
 
 <template name="fund">
   <div class="row">
-  
+
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-12">
@@ -122,7 +125,7 @@
     <div class="col-md-6">
 <!--       {{#if developerNumber}}
 
- -->    
+ -->
         <div class="row">
           <div class="col-md-12">
             Developer
@@ -154,4 +157,42 @@
       <!-- {{/if}} -->
     </div>
   </div>
+</template>
+
+<template name="fileUpload">
+<div class="panel panel-default push-down">
+{{#if currentUser}}
+  <div class="panel-body">
+    <p>
+      Add Files
+        <input  type="file" name="file" class="fileInput"/>
+        <span class="btn btn-primary fileUpload">
+          Upload
+        </span>
+    </p>
+  </div>
+{{/if}}
+{{#if uploads}}
+  <div class="panel-footer">
+      <div class="col-md-9">
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+          <th>Name</th>
+          <th>Download</th>
+          </thead>
+          <tbody>
+            {{#each uploads}}
+            <tr>
+              <td>{{name}}</td>
+              <td><a href="{{url download=true}}" type="button" class="btn btn-warning" target="_brank">
+                Download
+              </a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+  </div>
+{{/if}}
+</div>
 </template>

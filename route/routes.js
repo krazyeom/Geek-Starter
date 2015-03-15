@@ -5,7 +5,7 @@ Router.configure({
 });
 
 Router.route('/', {
-  name: 'home', 
+  name: 'home',
   template: 'home',
   waitOn: function() {
     return [
@@ -20,18 +20,18 @@ Router.route('/', {
 });
 
 Router.route('/start', {
-  name: 'start', 
+  name: 'start',
   template: 'startProject'
 });
 
-Router.route('/discover', 'discover', { 
+Router.route('/discover', 'discover', {
   template: 'discover',
   waitOn: function() {
     return [
       Meteor.subscribe('projects'),
       Meteor.subscribe('comments')
     ];
-  }, 
+  },
   data: function() {
     return Projects.find({}, {sort: {submitted: -1}});
   }
@@ -42,6 +42,8 @@ Router.route('/project/:_id', {
   waitOn: function() {
     return [
       Meteor.subscribe('projects'),
+      Meteor.subscribe('Uploads'),
+      Meteor.subscribe('events', this.params._id),
       Meteor.subscribe('comments')
     ];
   },
@@ -62,14 +64,14 @@ Router.route('/project/:_id/fund', {
   }
 });
 
-Router.route('/login', { 
+Router.route('/login', {
   template: 'login',
   waitOn: function() {
     return $.material.init();
   }
 });
 
-Router.route('/signup', { 
+Router.route('/signup', {
   template: 'register',
   waitOn: function() {
     return $.material.init();
@@ -81,21 +83,21 @@ Router.route('/jobs', function(){
 });
 
 
-var requireLogin = function() { 
+var requireLogin = function() {
   if (! Meteor.user()) {
-    if (Meteor.loggingIn()) { 
+    if (Meteor.loggingIn()) {
       this.render(this.loadingTemplate);
-    } else { 
+    } else {
       this.render('accessDenied');
     }
   } else {
-    this.next(); 
+    this.next();
   }
 }
 
-// var requireLoginTitlebar = function() { 
+// var requireLoginTitlebar = function() {
 //   if (Meteor.user()) {
-//     this.next(); 
+//     this.next();
 //   } else {
 //     this.render('notLoginTitle');
 //   }

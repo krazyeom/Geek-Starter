@@ -7,19 +7,49 @@ Template.project.helpers({
   }
 });
 
+Template.fileUpload.helpers({
+  uploads:function(){
+      _this = this;
+      var array = [];
+      var files = events.find({}).fetch();
+      $(files).each(function(){
+        array[array.length] = this.file.getFileRecord();
+      });
+
+    return array;
+  }
+});
+
 Template.project.rendered = function () {
   $.material.init();
 };
 
 Template.commentItem.helpers({
   submittedText: function() {
-    return this.submitted.toString(); 
+    return this.submitted.toString();
+  }
+});
+
+Template.fileUpload.events({
+  'click .fileUpload': function (event, template) {
+
+  var file = template.find('.fileInput').files[0];
+  file = new FS.File(file);
+  var projectId = this._id;
+
+  Uploads.insert(file, function(err, fileObj){
+    console.log(fileObj);
+    events.insert({
+        projectId: projectId ,
+        file: fileObj
+      });
+  })
   }
 });
 
 addComment = function(e, template) {
   var $body = $(e.target).find("#commentbody");
-  
+
   if ($body.val().trim().length === 0) {
     alert("Please enter comment");
     return;
@@ -36,7 +66,7 @@ addComment = function(e, template) {
     } else {
       $body.val('');
     }
-  });  
+  });
 }
 
 Template.commentSubmit.events({
