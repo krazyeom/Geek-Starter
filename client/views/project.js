@@ -34,15 +34,18 @@ Template.fileUpload.events({
   'click .fileUpload': function (event, template) {
 
   var file = template.find('.fileInput').files[0];
-  file = new FS.File(file);
-  var projectId = this._id;
+  var file2 = new FS.File(file);
+  if (file && file2) {
+    file = new FS.File(file);
+    var projectId = this._id;
 
-  Uploads.insert(file, function(err, fileObj){
-    events.insert({
-        projectId: projectId ,
-        file: fileObj
-      });
-  })
+    Uploads.insert(file, function(err, fileObj){
+      events.insert({
+          projectId: projectId ,
+          file: fileObj
+        });
+    })
+    }
   }
 });
 
