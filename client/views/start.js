@@ -24,21 +24,34 @@ Template.startForm.events({
     //   return;
     // }
 
+    var projectId = tmp.data ? tmp.data._id : '';
+
     var project = {
+      projectId: projectId,
       title: title,
       description: desc,
       fundGoal: 0,
       developerNumber: 0,
       designerNumber: 0
     }
-    Meteor.call('addProject', project, function(err, result){
-      if (err) {
-        // console.log(err);
-        return console.log(err);
-      } 
 
-      Router.go('discover');
-    });
+    if (projectId) {
+      Meteor.call('updateProject', project, function(err, result){
+        if (err) {
+          console.log(err);
+        }
+
+        Router.go('project', {_id: project.projectId});
+      });
+    } else {
+      Meteor.call('addProject', project, function(err, result){
+        if (err) {
+          console.log(err);
+        }
+
+        Router.go('discover');
+      });
+    }
   }
 });
 

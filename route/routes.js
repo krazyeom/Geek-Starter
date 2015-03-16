@@ -64,6 +64,19 @@ Router.route('/project/:_id/fund', {
   }
 });
 
+Router.route('/project/:_id/edit', {
+  name: 'projectEdit',
+  template: 'startProject',
+  waitOn: function() {
+    return [
+      Meteor.subscribe('projects')
+    ];
+  },
+  data: function() {
+    return Projects.findOne(this.params._id);
+  }
+});
+
 Router.route('/login', {
   template: 'login',
   waitOn: function() {

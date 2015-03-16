@@ -5,7 +5,11 @@
         <div class="col-md-10 col-md-offset-1">
           <!-- Project Details Go Here -->
           <h2>{{title}}</h2>
-          <p class="item-intro text-muted">by {{userName}}</p>
+          <p class="item-intro text-muted">by {{userName}}
+            {{#if editable}}
+              <a href="{{pathFor 'projectEdit'}}" id="edit" class="btn btn-warning">Edit</a>
+            {{/if}}
+          </p>
           <ul class="list-inline">
             <li>{{submitted}}</li>
           </ul>

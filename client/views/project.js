@@ -4,6 +4,9 @@ Template.project.helpers({
   },
   username: function() {
     return Meteor.user().profile.userName;
+  }, 
+  editable: function() {
+    return Meteor.user()._id === this.userId;
   }
 });
 
