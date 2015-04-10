@@ -52,6 +52,28 @@ Template.startForm.events({
         Router.go('discover');
       });
     }
+  },
+  'click .fileUpload': function (event, template) {
+    var fileInput = template.find('.fileInput');
+    var control = $(fileInput);
+    var file = fileInput.files[0];
+
+    if (file) {
+      file = new FS.File(file);
+      var projectId = this._id;
+
+      Uploads.insert(file, function(err, fileObj){
+        if (err == undefined){
+          events.insert({
+            projectId: projectId,
+            file: fileObj
+          });
+       }
+      });
+    } else {
+      alert('please choose file.');
+    }
+    control.replaceWith( control = control.clone( true ) );
   }
 });
 
